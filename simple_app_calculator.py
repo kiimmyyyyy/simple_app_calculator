@@ -3,21 +3,21 @@ from tkinter import messagebox
 from unittest import result
 
 
-def kims_calculator():
+def kimmy_calculator():
     try:
-        num1 = float(num1.get())
-        num2 = float(num2.get())
+        num1 = float(prog_num1.get())
+        num2 = float(prog_num2.get())
         operation = operation_var.get()
 
 
         if operation == "Addition":
-            result = num1 + num2
+            print(num1 + num2)
         elif operation =="Subtraction":
-            result = num1 - num2
+            print(num1 - num2)
         elif operation == "Multiplication":
-            result = num1 * num2
+            print(num1 * num2)
         elif operation =="Division":
-            result = num1 / num2
+            print(num1 / num2)
             if num2 == 0:
                 raise ZeroDivisionError ("Undefined")
         else:
@@ -59,7 +59,7 @@ options = ["Addition", "Subtraction", "Multiplication", "Division"]
 dropdown = tk.OptionMenu(root, operation_var, *options)
 dropdown.pack()
 
-btn_calculate = tk.Button(root, text="Calculate", command=kims_calculator, bg="light blue", fg="black")
+btn_calculate = tk.Button(root, text="Calculate", command=kimmy_calculator, bg="light blue", fg="black")
 btn_calculate.pack(pady=10)
 
 label_result = tk.Label(root, text="Result: ", font=("Comic Sans", 13, "bold"))
