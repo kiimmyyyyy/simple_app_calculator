@@ -31,7 +31,7 @@ def kims_calculator():
     except ZeroDivisionError as error:
         messagebox.showerror("Math Error", str(error))
 
-def reset_program()
+def reset_program():
     prog_num1.delete(0, tk.END)
     prog_num2.delete(0, tk.END)
     label_result.config(text=f"Result: {result}", fg="green")
@@ -52,3 +52,23 @@ tk.Label(root, text= "Enter Second Number: ").pack(pady=5)
 prog_num2 = tk.Entry(root)
 prog_num2.pack()
 
+tk.Label(root, text="Choose Operation: ").pack(pady=5)
+operation_var = tk.StringVar(root)
+operation_var.set("Select Operation")
+options = ["Addition", "Subtraction", "Multiplication", "Division"]
+dropdown = tk.OptionMenu(root, operation_var, *options)
+dropdown.pack()
+
+btn_calculate = tk.Button(root, text="Calculate", command=kims_calculator, bg="light blue", fg="black")
+btn_calculate.pack(pady=10)
+
+label_result = tk.Label(root, text="Result: ", font=("Comic Sans", 13, "bold"))
+label_result.pack(pady=10)
+
+btn_reset = tk.Button(root, text="Try Again", command=reset_program, bg="white", fg="red")
+btn_reset.pack(pady=5)
+
+btn_exit = tk.Button(root, text="Exit", command=exit_program, bg="white", fg="red")
+btn_exit.pack(pady=5)
+
+root.mainloop()
