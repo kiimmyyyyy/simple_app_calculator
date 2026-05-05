@@ -23,8 +23,7 @@ def kimmy_calculator():
         elif operation == "Power":
             result = num1 ** num2
         elif operation == "Square Root":
-            if num1 < 0:
-                messagebox.showerror(title="Input Error", message= f"The number {num1} cannot be negative.")
+            result = math.sqrt(num1 + num2)
         else:
             messagebox.showerror(title="Input Error", message=" Math Operation is not recognized")
             return
@@ -57,23 +56,23 @@ tk.Label(root, text= "Enter Second Number: ").pack(pady=5)
 prog_num2 = tk.Entry(root)
 prog_num2.pack()
 
-tk.Label(root, text="Choose Operation: ").pack(pady=5)
+tk.Label(root, text="Choose Operation: ", bg= "yellow").pack(pady=5)
 operation_var = tk.StringVar(root)
 operation_var.set("Select Operation")
-options = ["Addition", "Subtraction", "Multiplication", "Division"]
+options = ["Addition", "Subtraction", "Multiplication", "Division", "Power", "Square Root"]
 dropdown = tk.OptionMenu(root, operation_var, *options)
 dropdown.pack()
 
-btn_calculate = tk.Button(root, text="Calculate", command=kimmy_calculator, bg="light blue", fg="black")
+btn_calculate = tk.Button(root, text="Calculate", command=kimmy_calculator, bg="light pink", fg="black", font=("Times New Roman", 12, "bold"))
 btn_calculate.pack(pady=10)
 
-label_result = tk.Label(root, text="Result: ", font=("Comic Sans", 13, "bold"))
+label_result = tk.Label(root, text="Result: ", font=("Times New Roman", 15, "bold"))
 label_result.pack(pady=10)
 
-btn_reset = tk.Button(root, text="Try Again", command=reset_program, bg="white", fg="red")
-btn_reset.pack(pady=5)
+btn_reset = tk.Button(root, text="Try Again", command=reset_program, bg="white", fg="green", font=("Times New Roman", 12, "bold"))
+btn_reset.pack(pady=10)
 
 btn_exit = tk.Button(root, text="Exit", command=exit_program, bg="white", fg="red")
-btn_exit.pack(pady=5)
+btn_exit.pack(pady=10)
 
 root.mainloop()
