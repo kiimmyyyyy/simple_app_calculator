@@ -1,30 +1,35 @@
 import tkinter as tk
 from tkinter import messagebox
-from unittest import result
-
+import math
 
 def kimmy_calculator():
     try:
         num1 = float(prog_num1.get())
         num2 = float(prog_num2.get())
         operation = operation_var.get()
+        result = None
 
 
         if operation == "Addition":
-            print(num1 + num2)
+            result = num1 + num2
         elif operation =="Subtraction":
-            print(num1 - num2)
+            result = num1 - num2
         elif operation == "Multiplication":
-            print(num1 * num2)
+            result = num1 * num2
         elif operation =="Division":
-            print(num1 / num2)
             if num2 == 0:
                 raise ZeroDivisionError ("Undefined")
+            result = num1 / num2
+        elif operation == "Power":
+            result = num1 ** num2
+        elif operation == "Square Root":
+            if num1 < 0:
+                messagebox.showerror(title="Input Error", message= f"The number {num1} cannot be negative.")
         else:
             messagebox.showerror(title="Input Error", message=" Math Operation is not recognized")
             return
 
-        label_result.config(text=f"Result: {result}", fg="pink")
+        label_result.config(text=f"Result: {result}", fg="blue")
 
     except ValueError:
         messagebox.showerror(title="Input Error", message=" PLEASE enter valid numbers.")
@@ -34,7 +39,7 @@ def kimmy_calculator():
 def reset_program():
     prog_num1.delete(0, tk.END)
     prog_num2.delete(0, tk.END)
-    label_result.config(text=f"Result: {result}", fg="green")
+    label_result.config(text=f"Result: ", fg="green")
 
 def exit_program():
     messagebox.showinfo("Exit Program", f"Program Exited. Come back next time!")
