@@ -2,6 +2,48 @@ import tkinter as tk
 from tkinter import messagebox
 import math
 
+class CalculatorLogic:
+    def add (self, num1, num2): return num1 + num2
+    def subtract (self, num1, num2): return num1 - num2
+    def multiply (self, num1, num2): return num1 * num2
+    def divide (self, num1, num2):
+        if num2 == 0:
+            raise ZeroDivisionError ("Undefined")
+        return num1 / num2
+    def power (self, num1, num2): return num1 ** num2
+    def square_root (self, num1, num2): return math.sqrt(num1 + num2)
+
+class KimmyCalculatorApp:
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Kim's Simple App Calculator")
+        self.root.geometry("400x400")
+
+        self.create_widgets()
+
+    def create_widgets(self):
+        tk.Label(self.root, text="Enter First Number: ").pack(pady=5)
+        self.prog_num1 = tk.Entry(root)
+        self.prog_num1.pack()
+
+        tk.Label(self.root, text="Enter Second Number: ").pack(pady=5)
+        self.prog_num2 = tk.Entry(root)
+        self.prog_num2.pack()
+
+        tk.Label(self.root, text="Choose Operation: ", bg="yellow").pack(pady=5)
+        self.operation_var = tk.StringVar(root)
+        self.operation_var.set("Select Operation")
+        options = ["Addition", "Subtraction", "Multiplication", "Division", "Power", "Square Root"]
+        self.dropdown = tk.OptionMenu(root, self.operation_var, *options)
+        self.dropdown.pack()
+
+
+
+
+
+
+
+
 def kimmy_calculator():
     try:
         num1 = float(prog_num1.get())
