@@ -37,6 +37,19 @@ class KimmyCalculatorApp:
         self.dropdown = tk.OptionMenu(root, self.operation_var, *options)
         self.dropdown.pack()
 
+        self.btn_calculate = tk.Button(self.root, text="Calculate", command=self.calculate, bg="light pink", fg="black", font=("Times New Roman", 12, "bold"))
+        self.btn_calculate.pack(pady=10)
+        self.label_result = tk.Label(self.root, text="Result: ", font=("Times New Roman", 15, "bold"))
+        self.label_result.pack(pady=10)
+
+        self.btn_reset = tk.Button(self.root, text="Try Again", command=self.reset_program, bg="white", fg="green", font=("Times New Roman", 12, "bold"))
+        self.btn_reset.pack(pady=5)
+
+        self.btn_exit = tk.Button(self.root, text="Exit", command=self.exit_program, bg="white", fg="red")
+        self.btn_exit.pack(pady=5)
+
+
+
 
 
 
@@ -63,7 +76,7 @@ def kimmy_calculator():
                 raise ZeroDivisionError ("Undefined")
             result = num1 / num2
         elif operation == "Power":
-            result = num1 ** num2
+            result = num1 ** num2,
         elif operation == "Square Root":
             result = math.sqrt(num1 + num2)
         else:
