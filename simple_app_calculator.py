@@ -13,11 +13,12 @@ class CalculatorLogic:
         if num2 == 0:
             raise ZeroDivisionError("Undefined")
         return num1 / num2
+
     def power(self, num1, num2): return num1 ** num2
-    
+
     def square_root(self, num1, num2): return math.sqrt(num1 + num2)
 
-class KimmyCalculatorApp:
+class KimmyCalculatorApp(CalculatorLogic):
     def __init__(self, root):
         self.root = root
         self.root.title("Kim's Simple App Calculator")
@@ -27,18 +28,18 @@ class KimmyCalculatorApp:
 
     def create_widgets(self):
         tk.Label(self.root, text="Enter First Number: ").pack(pady=5)
-        self.prog_num1 = tk.Entry(root)
+        self.prog_num1 = tk.Entry(self.root)
         self.prog_num1.pack()
 
         tk.Label(self.root, text="Enter Second Number: ").pack(pady=5)
-        self.prog_num2 = tk.Entry(root)
+        self.prog_num2 = tk.Entry(self.root)
         self.prog_num2.pack()
 
         tk.Label(self.root, text="Choose Operation: ", bg="yellow").pack(pady=5)
-        self.operation_var = tk.StringVar(root)
+        self.operation_var = tk.StringVar(self.root)
         self.operation_var.set("Select Operation")
-        options = ["Addition", "Subtraction", "Multiplication", "Division", "Exponent", "Square Root"]
-        self.dropdown = tk.OptionMenu(root, self.operation_var, *options)
+        options = ["Addition", "Subtraction", "Multiplication", "Division", "Power", "Square Root"]
+        self.dropdown = tk.OptionMenu(self.root, self.operation_var, *options)
         self.dropdown.pack()
 
         self.btn_calculate = tk.Button(self.root, text="Calculate", command=self.calculate, bg="light pink", fg="black",
@@ -61,43 +62,43 @@ class KimmyCalculatorApp:
             operation = self.operation_var.get()
             result = None
 
-        if operation == "Addition":
-            result = self.add(num1, num2)
-        elif operation == "Subtraction":
-            result = self.subtract(num1, num2)
-        elif operation == "Multiplication":
-            result = self.multiply(num1, num2)
-        elif operation == "Division":
-            result == self.divide(num1, num2)
-        elif operation == "Power":
-            result = self.power(num1, num2)
-        elif operation == "Square Root":
-            result = self.square_root(num1, num2)
-        else:
-            messagebox.showeeror(title="Invalid Input", message="Input Value is not recognized.")
-            return
+            if operation == "Addition":
+                result = self.add(num1, num2)
+            elif operation == "Subtraction":
+                result = self.subtract(num1, num2)
+            elif operation == "Multiplication":
+                result = self.multiply(num1, num2)
+            elif operation == "Division":
+                result = self.divide(num1, num2)
+            elif operation == "Power":
+                result = self.power(num1, num2)
+            elif operation == "Square Root":
+                result = self.square_root(num1, num2)
+            else:
+                messagebox.showerror(title="Invalid Input", message="Input Value is not recognized.")
+                return
 
-        self.label_result.config(text=f"Result: {result}", fg="blue")
+            self.label_result.config(text=f"Result: {result}", fg="blue")
 
         except ValueError:
-        messagebox.showerror(title="Input Error", message=" PLEASE enter valid numbers.")
+             messagebox.showerror(title="Input Error", message=" PLEASE enter valid numbers.")
 
-    except ZeroDivisionError as error:
-    messagebox.showeerror("Math Error", str(error))
-
-
-def reset_program(self):
-    self.prog_num1.delete(0, tk.END)
-    self.prog_num2.delete(0, tk.END)
-    self.label_result.config(text="Result: ", fg="green")
+        except ZeroDivisionError as error:
+             messagebox.showerror("Math Error", str(error))
 
 
-def exit_program(self):
-    messagebox.showinfo("Exit Program", f"Program Exited. Come back next time!")
-    self.root.destroy()
+    def reset_program(self):
+        self.prog_num1.delete(0, tk.END)
+        self.prog_num2.delete(0, tk.END)
+        self.label_result.config(text="Result: ", fg="green")
+
+
+    def exit_program(self):
+        messagebox.showinfo("Exit Program", f"Program Exited. Come back next time!")
+        self.root.destroy()
 
 
 if __name__ == "__main__":
-    root = tk.TK()
+    root = tk.Tk()
     app = KimmyCalculatorApp(root)
     root.mainloop()
